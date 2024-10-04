@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API 예제</title>
+</head>
+<body>
+    <h1>Google Gemini API 예제</h1>
+    <form method="POST">
+        <textarea name="user_input" rows="4" cols="50" placeholder="여기에 텍스트를 입력하세요..."></textarea><br>
+        <button type="submit">전송</button>
+    </form>
+    {% if response %}
+        <h2>응답:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>
