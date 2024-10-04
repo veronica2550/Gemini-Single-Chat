@@ -21,12 +21,20 @@ genai.configure(api_key=GOOGLE_API_KEY)
 def index():
     response_text = ""
     if request.method == 'POST':
-        user_input = request.form['user_input']  # 사용자가 입력한 텍스트
+        user_input = request.form['user_input']
         model = genai.GenerativeModel('gemini-pro')
         response = model.generate_content(user_input)
-        response_text = response.text  # API 응답
+        
+        # API 응답 구조 출력
+        print(response)  # 응답 내용을 출력하여 구조 확인
+
+        # response.text 대신 적절한 필드 사용
+        if hasattr(response, 'text'):
+            response_text = response.text  # 기존 코드를 유지하되, 예외처리 추가
+        else:
+            response_text = "응답에 'text' 필드가 없습니다."
 
     return render_template('index.html', response=response_text)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
